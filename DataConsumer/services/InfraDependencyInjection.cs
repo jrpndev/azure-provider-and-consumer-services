@@ -1,5 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Mvc;
 
 public static class InfraDependencyInjection
 {
@@ -12,6 +13,7 @@ public static class InfraDependencyInjection
             var queueName = serviceBusConfig.GetValue<string>("QueueName");
             return new ServiceBusMessageConsumerService(queueName, connectionString);
         });
+
     }
 
     public static void ConfigureServices(IServiceCollection services, IConfiguration configuration)

@@ -1,9 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Threading.Tasks;
 
 [Route("api/[controller]")]
 [ApiController]
+[ServiceFilter(typeof(BasicAuthorizationFilter))]
+[ServiceFilter(typeof(ExecutionTimeActionFilter))]
 public class CheckController : ControllerBase
 {
     private readonly IServiceBusMessageConsumerService _messageConsumerService;
@@ -27,4 +28,3 @@ public class CheckController : ControllerBase
         }
     }
 }
-

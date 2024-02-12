@@ -36,3 +36,4 @@ C:\Users\18469\Documents\professional\software-engineer-backend-challenge\DataCo
 C:\Users\18469\Documents\professional\software-engineer-backend-challenge\DataConsumer\obj\Debug\net8.0\DataConsumer.pdb
 C:\Users\18469\Documents\professional\software-engineer-backend-challenge\DataConsumer\obj\Debug\net8.0\DataConsumer.genruntimeconfig.cache
 C:\Users\18469\Documents\professional\software-engineer-backend-challenge\DataConsumer\obj\Debug\net8.0\ref\DataConsumer.dll
+C:\Users\18469\Documents\professional\software-engineer-backend-challenge\DataConsumer\obj\Debug\net8.0\DataConsumer.sourcelink.json

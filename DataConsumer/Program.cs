@@ -1,10 +1,15 @@
+using Microsoft.Extensions.DependencyInjection;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddTransient<ExecutionTimeActionFilter>();
+builder.Services.AddTransient<BasicAuthorizationFilter>();
+
 InfraDependencyInjection.ConfigureServices(builder.Services, builder.Configuration);
 
 var app = builder.Build();
-
 
 if (!app.Environment.IsDevelopment())
 {
