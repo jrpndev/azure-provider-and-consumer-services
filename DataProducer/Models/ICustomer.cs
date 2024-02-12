@@ -1,5 +1,5 @@
 public interface ICustomerRepository
 {
-    Task AddCustomerAsync(Customer customer);
-    Task<List<Customer>> GetCustomersAsync();
+    Task<bool> AddCustomerAsync(CustomerDTO customer);
+    Task<List<CustomerDTO>> GetCustomersAsync();
 }

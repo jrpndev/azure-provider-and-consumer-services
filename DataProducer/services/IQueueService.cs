@@ -1,7 +1,6 @@
 using Azure.Messaging.ServiceBus;
 using DataProducer.Models;
-using Microsoft.Extensions.Configuration;
-using System.Threading.Tasks;
+
 
 public class ServiceBusMessageSenderService : IServiceBusMessageSenderService
 {

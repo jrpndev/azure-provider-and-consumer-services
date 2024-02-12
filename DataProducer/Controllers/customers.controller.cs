@@ -20,7 +20,7 @@ public class CustomersController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> AddCustomer([FromBody] Customer customer, [FromHeader(Name = "Authorization")] string authorizationHeader)
+    public async Task<IActionResult> AddCustomer([FromBody] CustomerDTO customer, [FromHeader(Name = "Authorization")] string authorizationHeader)
     {
         if (!authorizationHeader.StartsWith("Basic ", StringComparison.OrdinalIgnoreCase))
         {

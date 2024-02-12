@@ -9,15 +9,24 @@ public class CosmosDBCustomerRepository : ICustomerRepository
         _container = cosmosClient.GetDatabase(databaseName).GetContainer(containerName);
     }
 
-    public async Task AddCustomerAsync(Customer customer)
+    public async Task<bool> AddCustomerAsync(CustomerDTO customer)
     {
-        await _container.UpsertItemAsync(customer);
+        try
+        {
+            await _container.UpsertItemAsync(customer);
+            return true; // If the upsert operation succeeds, return true indicating success.
+        }
+        catch (Exception ex)
+        {
+            // Log the exception here if needed
+            return false; // If an exception occurs during the upsert operation, return false indicating failure.
+        }
     }
 
-    public async Task<List<Customer>> GetCustomersAsync()
+    public async Task<List<CustomerDTO>> GetCustomersAsync()
     {
-        var query = _container.GetItemQueryIterator<Customer>(new QueryDefinition("SELECT * FROM c"));
-        var results = new List<Customer>();
+        var query = _container.GetItemQueryIterator<CustomerDTO>(new QueryDefinition("SELECT * FROM c"));
+        var results = new List<CustomerDTO>();
 
         while (query.HasMoreResults)
         {

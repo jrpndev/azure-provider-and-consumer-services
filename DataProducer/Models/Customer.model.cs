@@ -1,7 +1,7 @@
 using System.Text.Json.Serialization;
 using Newtonsoft.Json;
 
-public class Customer
+public class CustomerDTO
 {
     [JsonProperty(PropertyName = "id")]
     public Guid Id { get; set; }

@@ -6,6 +6,8 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddTransient<ExecutionTimeActionFilter>();
 builder.Services.AddTransient<BasicAuthorizationFilter>();
+builder.Services.AddTransient<JsonExceptionFilter>();
+
 
 InfraDependencyInjection.ConfigureServices(builder.Services, builder.Configuration);
 
