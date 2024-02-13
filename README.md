@@ -1,6 +1,6 @@
 # README - API Consumer e Producer
 
-Este é um conjunto de APIs para consumir e produzir dados de clientes. A API Producer envia os dados dos clientes para uma fila do Azure Service Bus e armazena no azure cosmos db a API Consumer processa esses dados.
+Este é um conjunto de APIs para consumir e produzir dados de clientes. A API Producer envia os dados dos clientes para uma fila do Azure Service Bus e armazena no azure cosmos db,  a API Consumer processa esses dados consumindo a fila do service bus.
 
 ## Pré-requisitos
 
