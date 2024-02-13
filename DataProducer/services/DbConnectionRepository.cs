@@ -14,12 +14,11 @@ public class CosmosDBCustomerRepository : ICustomerRepository
         try
         {
             await _container.UpsertItemAsync(customer);
-            return true; // If the upsert operation succeeds, return true indicating success.
+            return true; 
         }
         catch (Exception ex)
         {
-            // Log the exception here if needed
-            return false; // If an exception occurs during the upsert operation, return false indicating failure.
+            return false;
         }
     }
 
