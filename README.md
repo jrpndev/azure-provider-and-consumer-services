@@ -18,7 +18,17 @@ Para rodar a API Producer, siga estas etapas:
 
 dotnet watch
 
-3. Certifique-se de que a API está ouvindo na porta especificada (por padrão, `localhost:5199/api/customers`).
+3. Certifique-se de que a API está ouvindo na porta especificada (por padrão, `localhost:5199`).
+
+4. Para registrar um dado no banco e enviar para a fila, envie uma requisicao post para : /api/customers.
+
+5. Utilize um corpo JSON com o formato DTO (customer)
+
+{
+name,
+email,
+phoneNumber
+}
 
 ## Rodando a API Consumer
 
