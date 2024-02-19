@@ -5,6 +5,7 @@ builder.Services.AddControllersWithViews();
 InfraDependencyInjection.ConfigureServices(builder.Services, builder.Configuration);
 
 var app = builder.Build();
+builder.ConfigureKeyVault(builder.Configuration);
 
 
 // Configure the HTTP request pipeline.
