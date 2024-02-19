@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Dev\\Documents\\apis\\challenge\\azure-provider-and-consumer-services\\DataProducer\\DataProducer.csproj": {}
+    "/root/bemol/azure-provider-and-consumer-services/DataProducer/DataProducer.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Dev\\Documents\\apis\\challenge\\azure-provider-and-consumer-services\\DataProducer\\DataProducer.csproj": {
+    "/root/bemol/azure-provider-and-consumer-services/DataProducer/DataProducer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Dev\\Documents\\apis\\challenge\\azure-provider-and-consumer-services\\DataProducer\\DataProducer.csproj",
+        "projectUniqueName": "/root/bemol/azure-provider-and-consumer-services/DataProducer/DataProducer.csproj",
         "projectName": "DataProducer",
-        "projectPath": "C:\\Users\\Dev\\Documents\\apis\\challenge\\azure-provider-and-consumer-services\\DataProducer\\DataProducer.csproj",
-        "packagesPath": "C:\\Users\\Dev\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Dev\\Documents\\apis\\challenge\\azure-provider-and-consumer-services\\DataProducer\\obj\\",
+        "projectPath": "/root/bemol/azure-provider-and-consumer-services/DataProducer/DataProducer.csproj",
+        "packagesPath": "/root/.nuget/packages/",
+        "outputPath": "/root/bemol/azure-provider-and-consumer-services/DataProducer/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Dev\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/root/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -38,6 +38,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Azure.Extensions.AspNetCore.Configuration.Secrets": {
+              "target": "Package",
+              "version": "[1.3.1, )"
+            },
             "Azure.Identity": {
               "target": "Package",
               "version": "[1.10.4, )"
@@ -118,7 +122,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.101/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

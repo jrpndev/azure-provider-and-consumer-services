@@ -1,24 +1,49 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Azure.Cosmos;
 using Microsoft.Extensions.Configuration;
-using Extensions;
+using DataProducer.Models;
+using Microsoft.Extensions.Options;
 
 public static class InfraDependencyInjection
 {
-    public static async Task RegisterServices(IServiceCollection services, IConfiguration configuration)
+    public static void RegisterServices(IServiceCollection services, IConfiguration configuration)
     {
-        // Configurando o acesso ao Azure Key Vault
-        services.ConfigureKeyVault(configuration);
+        // Adicionando configurações do Azure Key Vault
+        services.AddConfigurations(configuration);
 
-        // Configurando o acesso ao Cosmos DB
-        await services.ConfigureCosmosDB(configuration);
+        // Registrando o CosmosClient
+        services.AddSingleton(provider =>
+        {
+            var serviceProvider = provider.CreateScope().ServiceProvider;
+            var cosmosConfig = serviceProvider.GetRequiredService<IOptionsSnapshot<CosmosDB>>().Value;
+            var cosmosClient = new CosmosClient(cosmosConfig.EndpointUri, cosmosConfig.AuthKey);
+            return cosmosClient;
+        });
 
-        // Configurando o acesso ao Service Bus
-        await services.ConfigureServiceBus(configuration);
+        services.AddScoped<ICustomerRepository>(provider =>
+        {
+            var serviceProvider = provider.CreateScope().ServiceProvider;
+            var cosmosConfig = serviceProvider.GetRequiredService<IOptionsSnapshot<CosmosDB>>().Value;
+            var cosmosClient = provider.GetRequiredService<CosmosClient>();
+            return new CosmosDBCustomerRepository(cosmosClient, cosmosConfig.DatabaseName, cosmosConfig.ContainerName);
+        });
+
+        services.AddSingleton<IServiceBusMessageSenderService, ServiceBusMessageSenderService>(provider =>
+        {
+            var serviceProvider = provider.CreateScope().ServiceProvider;
+            var serviceBusConfig = serviceProvider.GetRequiredService<IOptionsSnapshot<ServiceBus>>().Value;
+            return new ServiceBusMessageSenderService(serviceBusConfig.QueueName, serviceBusConfig.ConnectionString);
+        });
     }
 
-    public static async Task ConfigureServices(IServiceCollection services, IConfiguration configuration)
+    private static void AddConfigurations(this IServiceCollection services, IConfiguration configuration)
     {
-        await InfraDependencyInjection.RegisterServices(services, configuration);
+        services.Configure<CosmosDB>(configuration.GetSection(nameof(CosmosDB)));
+        services.Configure<ServiceBus>(configuration.GetSection(nameof(ServiceBus)));
+    }
+
+    public static void ConfigureServices(IServiceCollection services, IConfiguration configuration)
+    {
+        RegisterServices(services, configuration);
     }
 }

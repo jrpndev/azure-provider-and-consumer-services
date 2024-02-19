@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Dev\\Documents\\apis\\challenge\\azure-provider-and-consumer-services\\DataConsumer\\DataConsumer.csproj": {}
+    "/root/bemol/azure-provider-and-consumer-services/DataConsumer/DataConsumer.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Dev\\Documents\\apis\\challenge\\azure-provider-and-consumer-services\\DataConsumer\\DataConsumer.csproj": {
+    "/root/bemol/azure-provider-and-consumer-services/DataConsumer/DataConsumer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Dev\\Documents\\apis\\challenge\\azure-provider-and-consumer-services\\DataConsumer\\DataConsumer.csproj",
+        "projectUniqueName": "/root/bemol/azure-provider-and-consumer-services/DataConsumer/DataConsumer.csproj",
         "projectName": "DataConsumer",
-        "projectPath": "C:\\Users\\Dev\\Documents\\apis\\challenge\\azure-provider-and-consumer-services\\DataConsumer\\DataConsumer.csproj",
-        "packagesPath": "C:\\Users\\Dev\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Dev\\Documents\\apis\\challenge\\azure-provider-and-consumer-services\\DataConsumer\\obj\\",
+        "projectPath": "/root/bemol/azure-provider-and-consumer-services/DataConsumer/DataConsumer.csproj",
+        "packagesPath": "/root/.nuget/packages/",
+        "outputPath": "/root/bemol/azure-provider-and-consumer-services/DataConsumer/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Dev\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/root/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -98,7 +98,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.101/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
