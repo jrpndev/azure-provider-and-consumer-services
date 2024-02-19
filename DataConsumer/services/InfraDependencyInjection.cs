@@ -1,9 +1,13 @@
 using Microsoft.Extensions.Options;
+using Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel;
+
 public static class InfraDependencyInjection
 {
     public static void RegisterServices(IServiceCollection services, IConfiguration configuration)
     {
         services.AddConfigurations(configuration);
+
+        services.AddApplicationInsightsTelemetry(configuration["ApplicationInsights:InstrumentationKey"]);
 
         services.AddSingleton<IServiceBusMessageConsumerService, ServiceBusMessageConsumerService>(provider =>
         {

@@ -3,6 +3,7 @@ using Microsoft.Azure.Cosmos;
 using Microsoft.Extensions.Configuration;
 using DataProducer.Models;
 using Microsoft.Extensions.Options;
+using Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel;
 
 public static class InfraDependencyInjection
 {
@@ -11,6 +12,7 @@ public static class InfraDependencyInjection
         // Adicionando configurações do Azure Key Vault
         services.AddConfigurations(configuration);
 
+        services.AddApplicationInsightsTelemetry(configuration["ApplicationInsights:InstrumentationKey"]);
         // Registrando o CosmosClient
         services.AddSingleton(provider =>
         {
