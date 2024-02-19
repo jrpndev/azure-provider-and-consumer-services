@@ -3,9 +3,17 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using System;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Options;
 
 public class BasicAuthorizationFilter : IAuthorizationFilter
 {
+    private readonly CredentialsAPIConfig _credentialsConfig;
+
+    public BasicAuthorizationFilter(IOptionsSnapshot<CredentialsAPIConfig> credentialsConfig)
+    {
+        _credentialsConfig = credentialsConfig.Value;
+    }
+
     public void OnAuthorization(AuthorizationFilterContext context)
     {
 
@@ -24,7 +32,7 @@ public class BasicAuthorizationFilter : IAuthorizationFilter
             var parts = decodedUsernamePassword.Split(":");
             Console.WriteLine(parts[0]);
 
-            if (parts[0] == "teste01" && parts[1] == "password1")
+            if (parts[0] == _credentialsConfig.Username && parts[1] == _credentialsConfig.Password)
             {
                 return;
             }

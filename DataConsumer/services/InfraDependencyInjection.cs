@@ -1,23 +1,27 @@
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Configuration;
-using Microsoft.AspNetCore.Mvc;
-
+using Microsoft.Extensions.Options;
 public static class InfraDependencyInjection
 {
     public static void RegisterServices(IServiceCollection services, IConfiguration configuration)
     {
-        services.AddSingleton<IServiceBusMessageConsumerService>(provider =>
-        {
-            var serviceBusConfig = configuration.GetSection("ServiceBus");
-            var connectionString = serviceBusConfig.GetValue<string>("ConnectionString");
-            var queueName = serviceBusConfig.GetValue<string>("QueueName");
-            return new ServiceBusMessageConsumerService(queueName, connectionString);
-        });
+        services.AddConfigurations(configuration);
 
+        services.AddSingleton<IServiceBusMessageConsumerService, ServiceBusMessageConsumerService>(provider =>
+        {
+            var serviceProvider = provider.CreateScope().ServiceProvider;
+            var serviceBusApiConfig = serviceProvider.GetRequiredService<IOptionsSnapshot<ServiceBus>>().Value;
+            var credentialsApiConfig = serviceProvider.GetRequiredService<IOptionsSnapshot<CredentialsAPIConfig>>().Value;
+            return new ServiceBusMessageConsumerService(serviceBusApiConfig.QueueName, serviceBusApiConfig.ConnectionString);
+        });
+    }
+
+    private static void AddConfigurations(this IServiceCollection services, IConfiguration configuration)
+    {
+        services.Configure<ServiceBus>(configuration.GetSection(nameof(ServiceBus)));
+        services.Configure<CredentialsAPIConfig>(configuration.GetSection(nameof(CredentialsAPIConfig)));
     }
 
     public static void ConfigureServices(IServiceCollection services, IConfiguration configuration)
     {
-        InfraDependencyInjection.RegisterServices(services, configuration);
+        RegisterServices(services, configuration);
     }
 }
